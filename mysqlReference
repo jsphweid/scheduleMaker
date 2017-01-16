@@ -97,3 +97,10 @@
 --     FOREIGN KEY (day_7) REFERENCES day_predictions(day_id),
 --     last_update TIMESTAMP
 -- ) MAX_ROWS = 7
+
+--
+-- ALTER TABLE shifts
+--      CHANGE last_update
+--             last_update TIMESTAMP NOT NULL
+-- 						DEFAULT CURRENT_TIMESTAMP
+-- 						ON UPDATE CURRENT_TIMESTAMP;
