@@ -93,7 +93,7 @@ dataSource:
     jmxExport: true
     driverClassName: com.mysql.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    username: rootg
+    username: root
     password: localPassword
 
 environments:
