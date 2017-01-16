@@ -38,3 +38,62 @@
 --     shift_text VARCHAR(30) NOT NULL,
 --     last_update TIMESTAMP
 -- )
+
+-- SHOW ENGINE INNODB STATUS; -- more detailed errors command
+
+-- CREATE TABLE day_predictions (
+--     day_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     day_text VARCHAR(30) NOT NULL,
+--     hour_00 INT(6),
+--     hour_01 INT(6),
+--     hour_02 INT(6),
+--     hour_03 INT(6),
+--     hour_04 INT(6),
+--     hour_05 INT(6),
+--     hour_06 INT(6),
+--     hour_07 INT(6),
+--     hour_08 INT(6),
+--     hour_09 INT(6),
+--     hour_10 INT(6),
+--     hour_11 INT(6),
+--     hour_12 INT(6),
+--     hour_13 INT(6),
+--     hour_14 INT(6),
+--     hour_15 INT(6),
+--     hour_16 INT(6),
+--     hour_17 INT(6),
+--     hour_18 INT(6),
+--     hour_19 INT(6),
+--     hour_20 INT(6),
+--     hour_21 INT(6),
+--     hour_22 INT(6),
+--     hour_23 INT(6),
+--     last_update TIMESTAMP
+-- )
+
+
+-- CREATE TABLE week (
+-- 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     text VARCHAR(30),
+--     last_update TIMESTAMP
+-- ) MAX_ROWS = 7
+
+-- CREATE TABLE week_prediction (
+-- 	week_prediction_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     week_prediction_text VARCHAR(30),
+--     day_1 INT(6) UNSIGNED,
+--     day_2 INT(6) UNSIGNED,
+--     day_3 INT(6) UNSIGNED,
+--     day_4 INT(6) UNSIGNED,
+--     day_5 INT(6) UNSIGNED,
+--     day_6 INT(6) UNSIGNED,
+--     day_7 INT(6) UNSIGNED,
+--     FOREIGN KEY (day_1) REFERENCES day_predictions(day_id),
+--     FOREIGN KEY (day_2) REFERENCES day_predictions(day_id),
+--     FOREIGN KEY (day_3) REFERENCES day_predictions(day_id),
+--     FOREIGN KEY (day_4) REFERENCES day_predictions(day_id),
+--     FOREIGN KEY (day_5) REFERENCES day_predictions(day_id),
+--     FOREIGN KEY (day_6) REFERENCES day_predictions(day_id),
+--     FOREIGN KEY (day_7) REFERENCES day_predictions(day_id),
+--     last_update TIMESTAMP
+-- ) MAX_ROWS = 7
