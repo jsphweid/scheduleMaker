@@ -23,12 +23,14 @@ class DayPredictionController {
 
     def save() {
         def dayPredictionInstance = new DayPrediction(params)
+        println(params)
+
         dayPredictionInstance.lastUpdate = new Date()
         if (!dayPredictionInstance.save()) {
             render(view: "add", modal: [dayPredictionInstance: dayPredictionInstance])
             return
         }
-        redirect(action: "index", params: params)
+        redirect(action: "index")
     }
 
     def edit(DayPrediction dayPrediction) {

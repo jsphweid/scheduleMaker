@@ -60,7 +60,6 @@ class DayPrediction {
     int hour21
     int hour22
     int hour23
-    int hour24
     Date lastUpdate
 
     static constraints = {
