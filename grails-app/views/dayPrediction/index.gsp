@@ -14,11 +14,29 @@
             </ul>
         </div>
         <div id="list-dayPrediction" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:table collection="${dayPredictionList}" />
+            <body>
+
+            <h3>Day Prediction List</h3>
+            <div id="list-daypredictions" class="content scaffold-list" role="main">
+                <table>
+                    <thead>
+                    <tr>
+                        <g:sortableColumn property="text" title="Name"/>
+                        <g:sortableColumn property="lastUpdate" title="Last Modified"/>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <g:each in="${dayPredictions}" status="i" var="dayPredictionInstance">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}"
+                            onclick='document.location = "<g:createLink action='show' id='${dayPredictionInstance.id}'/>"
+                            '>
+                            <td>${dayPredictionInstance.text}</td>
+                            <td>${dayPredictionInstance.lastUpdate}</td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="pagination">
                 <g:paginate total="${dayPredictionCount ?: 0}" />

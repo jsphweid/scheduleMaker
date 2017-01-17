@@ -1,5 +1,7 @@
 package schedulemaker
 
+import grails.converters.JSON
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -8,13 +10,14 @@ class DayPredictionController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond DayPrediction.list(params), model:[dayPredictionCount: DayPrediction.count()]
+    def index() {
+        [dayPredictions: DayPrediction.list()]
     }
 
-    def show(DayPrediction dayPrediction) {
-        respond dayPrediction
+    def show(DayPrediction dayPred) {
+        String dayPrediction = dayPred as JSON
+        println dayPrediction
+        [dayPrediction: dayPrediction]
     }
 
     def create() {

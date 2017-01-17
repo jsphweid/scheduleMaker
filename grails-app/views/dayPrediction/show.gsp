@@ -16,16 +16,55 @@
         </div>
         <div id="show-dayPrediction" class="content scaffold-show" role="main">
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:display bean="dayPrediction" />
-            <g:form resource="${this.dayPrediction}" method="DELETE">
-                <fieldset class="buttons">
-                    <g:link class="edit" action="edit" resource="${this.dayPrediction}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                </fieldset>
-            </g:form>
+
+
+            <asset:javascript src="rgraph.moveablebargraph.min.js"/>
+
+            <div class="container">
+
+                <canvas id="cvs" width="600" height="250">
+                    [No canvas support]
+                </canvas>
+
+
+
+                <g:javascript>
+                    var rgraph;
+                    window.onload = function () {
+                        drawGraph("${dayPrediction}");
+                    };
+
+                    function drawGraph(data) {
+                        rgraph = new RGraph.Bar({
+                            id: 'cvs',
+                            data: makeDataArray(JSON.parse(data)),
+                            options: {
+                                adjustable: false,
+                                ymax: 40,
+                                labels: ['4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM',
+                                    '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM',
+                                    '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM',
+                                    '10 PM', '11 PM', '12 AM', '1 AM', '2 AM', '3 AM'],
+                                textAngle: -90,
+                                labelsOffsety: 50
+                            }
+                        }).draw();
+                    }
+                    function makeDataArray(obj) {
+                        var ret = [];
+                        for (var i = 0; i < 24; i++) {
+                            var hour = "hour";
+                            hour += ("0" + i).slice(-2);
+                            ret.push(obj[hour]);
+                        }
+                        return ret;
+                    }
+                </g:javascript>
+
+            </div>
+
+
+
         </div>
     </body>
 </html>

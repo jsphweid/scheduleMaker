@@ -20,6 +20,37 @@
     <asset:javascript src="rgraph.moveablebargraph.min.js"/>
 
     <div class="container">
+
+        <g:form name="createNewDayPrediction" controller="DayPrediction" action="save">
+            Title:
+            <g:textField name="text" value="${DayPredictionInstance?.text}"/>
+            <g:hiddenField name="hour00" value=""/>
+            <g:hiddenField name="hour01" value=""/>
+            <g:hiddenField name="hour02" value=""/>
+            <g:hiddenField name="hour03" value=""/>
+            <g:hiddenField name="hour04" value=""/>
+            <g:hiddenField name="hour05" value=""/>
+            <g:hiddenField name="hour06" value=""/>
+            <g:hiddenField name="hour07" value=""/>
+            <g:hiddenField name="hour08" value=""/>
+            <g:hiddenField name="hour09" value=""/>
+            <g:hiddenField name="hour10" value=""/>
+            <g:hiddenField name="hour11" value=""/>
+            <g:hiddenField name="hour12" value=""/>
+            <g:hiddenField name="hour13" value=""/>
+            <g:hiddenField name="hour14" value=""/>
+            <g:hiddenField name="hour15" value=""/>
+            <g:hiddenField name="hour16" value=""/>
+            <g:hiddenField name="hour17" value=""/>
+            <g:hiddenField name="hour18" value=""/>
+            <g:hiddenField name="hour19" value=""/>
+            <g:hiddenField name="hour20" value=""/>
+            <g:hiddenField name="hour21" value=""/>
+            <g:hiddenField name="hour22" value=""/>
+            <g:hiddenField name="hour23" value=""/>
+            <g:submitButton name="Save"/>
+        </g:form>
+
         <canvas id="cvs" width="600" height="250">
             [No canvas support]
         </canvas>
@@ -28,7 +59,7 @@
             window.onload = function () {
                 rgraph = new RGraph.Bar({
                     id: 'cvs',
-                    data: [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     options: {
                         adjustable: true,
                         ymax: 40,
@@ -57,35 +88,6 @@
                 })
             };
         </g:javascript>
-
-        <g:form name="createNewDayPrediction" controller="DayPrediction" action="save">
-            <g:textField name="text" value="${DayPredictionInstance?.text}"/>
-            <g:hiddenField name="hour00" value=""/>
-            <g:hiddenField name="hour01" value=""/>
-            <g:hiddenField name="hour02" value=""/>
-            <g:hiddenField name="hour03" value=""/>
-            <g:hiddenField name="hour04" value=""/>
-            <g:hiddenField name="hour05" value=""/>
-            <g:hiddenField name="hour06" value=""/>
-            <g:hiddenField name="hour07" value=""/>
-            <g:hiddenField name="hour08" value=""/>
-            <g:hiddenField name="hour09" value=""/>
-            <g:hiddenField name="hour10" value=""/>
-            <g:hiddenField name="hour11" value=""/>
-            <g:hiddenField name="hour12" value=""/>
-            <g:hiddenField name="hour13" value=""/>
-            <g:hiddenField name="hour14" value=""/>
-            <g:hiddenField name="hour15" value=""/>
-            <g:hiddenField name="hour16" value=""/>
-            <g:hiddenField name="hour17" value=""/>
-            <g:hiddenField name="hour18" value=""/>
-            <g:hiddenField name="hour19" value=""/>
-            <g:hiddenField name="hour20" value=""/>
-            <g:hiddenField name="hour21" value=""/>
-            <g:hiddenField name="hour22" value=""/>
-            <g:hiddenField name="hour23" value=""/>
-            <g:submitButton name="Save"/>
-        </g:form>
 
     </div>
 </div>
