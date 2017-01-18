@@ -4,6 +4,7 @@
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'dayPrediction.label', default: 'DayPrediction')}" />
     <title><g:message code="default.create.label" args="[entityName]" /></title>
+    <asset:stylesheet src="mine.css" />
 </head>
 
 
@@ -50,12 +51,14 @@
             <g:hiddenField name="hour23" value=""/>
             <g:submitButton name="Save"/>
         </g:form>
-        <div>
-            <canvas id="cvs">
-                [No canvas support]
-            </canvas>
-        </div>
 
+        <div class="container-fluid">
+            <div class="canvasBarGraph">
+                <canvas id="cvs" width="1000" height="450" >
+                    [No canvas support]
+                </canvas>
+            </div>
+        </div>
         <g:javascript>
             var rgraph;
             window.onload = function () {
@@ -63,9 +66,13 @@
                     id: 'cvs',
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     options: {
-                        adjustable: true,
-                        titleYaxis: 'Necessary Labor Index',
+                        adjustable: false,
+                        titleYaxis: "Necessary Labor Index",
                         ymax: 300,
+                        titleYaxisX: 30,
+                        ylabelsCount: 10,
+                        numyticks: 10,
+                        gutterLeft: 80,
                         labels: ['4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM',
                             '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM',
                             '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM',
