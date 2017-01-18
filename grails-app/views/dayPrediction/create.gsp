@@ -18,7 +18,8 @@
 </div>
 <div id="create-dayPrediction" class="content scaffold-create" role="main">
 
-    <asset:javascript src="rgraph.moveablebargraph.min.js"/>
+    <asset:javascript src="dayPredictionJS/rgraph.moveablebargraph.min.js"/>
+    %{--<asset:javascript src="dayPredictionJS/dayPredictionMain.js"/>--}%
 
     <div class="container-fluid">
 
@@ -60,19 +61,37 @@
             </div>
         </div>
         <g:javascript>
-            var rgraph;
-            window.onload = function () {
-                rgraph = new RGraph.Bar({
+            function getData(specialString) {
+                if (specialString) {
+                    return makeDataArray(JSON.parse(specialString));
+                } else {
+                    return Array.apply(null, Array(24)).map(Number.prototype.valueOf,0);
+                }
+            }
+
+            function makeDataArray(obj) {
+                var ret = [];
+                for (var i = 0; i < 24; i++) {
+                    var hour = "hour";
+                    hour += ("0" + i).slice(-2);
+                    ret.push(obj[hour]);
+                }
+                return ret;
+            }
+
+            function drawGraph(data, params) {
+                return new RGraph.Bar({
                     id: 'cvs',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: makeDataArray(data),
                     options: {
-                        adjustable: true,
+                        adjustable: params.adjustable,
                         titleYaxis: "Necessary Labor Index",
                         ymax: 300,
                         titleYaxisX: 30,
                         ylabelsCount: 10,
                         numyticks: 10,
                         gutterLeft: 80,
+                        colors: [params.color],
                         labels: ['4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM',
                             '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM',
                             '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM',
@@ -81,9 +100,11 @@
                         labelsOffsety: 50
                     }
                 }).draw();
+            }
 
+            function updateTagAssocations(rgraph) {
                 $(function() {
-                    $("[name='createNewDayPrediction']").submit(function() {
+                    $("[name='editDayPrediction']").submit(function() {
                         for (var i = 0; i < 24; i++) {
                             var hour = "hour";
                             hour += ("0" + i).slice(-2);
@@ -92,6 +113,14 @@
                         }
                     });
                 });
+            }
+
+            window.onload = function () {
+                var rgraph = drawGraph(getData(), {
+                    color: "red",
+                    adjustable: true
+                });
+                updateTagAssocations(rgraph);
             };
         </g:javascript>
 
