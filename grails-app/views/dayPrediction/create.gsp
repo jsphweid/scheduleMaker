@@ -19,7 +19,7 @@
 
     <asset:javascript src="rgraph.moveablebargraph.min.js"/>
 
-    <div class="container">
+    <div class="container-fluid">
 
         <g:form name="createNewDayPrediction" controller="DayPrediction" action="save">
             Title:
@@ -50,10 +50,12 @@
             <g:hiddenField name="hour23" value=""/>
             <g:submitButton name="Save"/>
         </g:form>
+        <div>
+            <canvas id="cvs">
+                [No canvas support]
+            </canvas>
+        </div>
 
-        <canvas id="cvs" width="600" height="250">
-            [No canvas support]
-        </canvas>
         <g:javascript>
             var rgraph;
             window.onload = function () {
@@ -62,19 +64,16 @@
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     options: {
                         adjustable: true,
-                        ymax: 40,
+                        titleYaxis: 'Necessary Labor Index',
+                        ymax: 300,
                         labels: ['4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM',
                             '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM',
                             '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM',
                             '10 PM', '11 PM', '12 AM', '1 AM', '2 AM', '3 AM'],
                         textAngle: -90,
-                        labelsOffsety: 50,
+                        labelsOffsety: 50
                     }
                 }).draw();
-
-                $('#myb').click(function() {
-                    console.log(rgraph.data);
-                });
 
                 $(function() {
                     $("[name='createNewDayPrediction']").submit(function() {
