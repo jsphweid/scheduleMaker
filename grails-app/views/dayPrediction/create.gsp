@@ -66,7 +66,7 @@
                     id: 'cvs',
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     options: {
-                        adjustable: false,
+                        adjustable: true,
                         titleYaxis: "Necessary Labor Index",
                         ymax: 300,
                         titleYaxisX: 30,
@@ -91,7 +91,7 @@
                             $("[name='" + hour + "']").val(Math.floor(rgraph.data[i]));
                         }
                     });
-                })
+                });
             };
         </g:javascript>
 

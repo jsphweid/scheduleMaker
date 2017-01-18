@@ -25,8 +25,6 @@ class DayPredictionController {
 
     def save() {
         def dayPredictionInstance = new DayPrediction(params)
-        println(params)
-
         dayPredictionInstance.lastUpdate = new Date()
         if (!dayPredictionInstance.save()) {
             render(view: "add", modal: [dayPredictionInstance: dayPredictionInstance])
@@ -36,11 +34,16 @@ class DayPredictionController {
     }
 
     def edit(DayPrediction dayPrediction) {
-        respond dayPrediction
+        String dayPredictionJSON = dayPrediction as JSON
+        [dayPredictionJSON: dayPredictionJSON, dayPrediction: dayPrediction]
     }
 
     @Transactional
     def update(DayPrediction dayPrediction) {
+
+        dayPrediction.lastUpdate = new Date()
+
+
         if (dayPrediction == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -54,15 +57,10 @@ class DayPredictionController {
         }
 
         dayPrediction.save flush:true
+        redirect(action: "show", id: dayPrediction.id)
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'dayPrediction.label', default: 'DayPrediction'), dayPrediction.id])
-                redirect dayPrediction
-            }
-            '*'{ respond dayPrediction, [status: OK] }
-        }
     }
+
 
     @Transactional
     def delete(DayPrediction dayPrediction) {
