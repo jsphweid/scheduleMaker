@@ -14,10 +14,9 @@ class DayPredictionController {
         [dayPredictions: DayPrediction.list()]
     }
 
-    def show(DayPrediction dayPred) {
-        String dayPrediction = dayPred as JSON
-        println dayPrediction
-        [dayPrediction: dayPrediction]
+    def show(DayPrediction dayPrediction) {
+        String dayPredictionJSON = dayPrediction as JSON
+        [dayPredictionJSON: dayPredictionJSON, dayPrediction: dayPrediction]
     }
 
     def create() {
