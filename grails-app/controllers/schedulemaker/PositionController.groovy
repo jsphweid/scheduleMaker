@@ -54,6 +54,9 @@ class PositionController {
 
     @Transactional
     def update(Position position) {
+
+        position.lastUpdate = new Date()
+
         if (position == null) {
             transactionStatus.setRollbackOnly()
             notFound()

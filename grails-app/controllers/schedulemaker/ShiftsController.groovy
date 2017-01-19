@@ -38,6 +38,9 @@ class ShiftsController {
 
     @Transactional
     def update(Shifts shifts) {
+
+        shifts.lastUpdate = new Date()
+
         if (shifts == null) {
             transactionStatus.setRollbackOnly()
             notFound()

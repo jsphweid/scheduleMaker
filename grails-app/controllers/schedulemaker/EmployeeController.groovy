@@ -54,6 +54,9 @@ class EmployeeController {
 
     @Transactional
     def update(Employee employee) {
+
+        employee.lastUpdate = new Date()
+
         if (employee == null) {
             transactionStatus.setRollbackOnly()
             notFound()
