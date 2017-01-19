@@ -34,7 +34,7 @@
             <tbody>
             <g:each in="${weekPredictions}" status="i" var="weekPredictionInstance">
                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}"
-                    onclick='document.location = "<g:createLink action='edit' id='${weekPredictionInstance.id}'/>"
+                    onclick='document.location = "<g:createLink action='show' id='${weekPredictionInstance.id}'/>"
                     '>
                     <td>${weekPredictionInstance.text}</td>
                     <td>${dayIdText[weekPredictionInstance.day1]}</td>
