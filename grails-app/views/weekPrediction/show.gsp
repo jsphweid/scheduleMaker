@@ -4,7 +4,6 @@
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'weekPrediction.label', default: 'weekPrediction')}" />
     <title><g:message code="default.show.label" args="[entityName]" /></title>
-    <asset:stylesheet src="mine.css" />
 </head>
 <body>
 <a href="#show-weekPrediction" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
