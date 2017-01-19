@@ -33,10 +33,10 @@
             <div class="container-fluid">
                 <g:javascript>
                     window.onload = function () {
-                        var rgraph = drawGraph(getData("${dayPredictionJSON}"), {
+                        drawGraph({
                             color: "gray",
                             adjustable: false
-                        });
+                        }, "${dayPredictionJSON}");
                     };
                 </g:javascript>
 
