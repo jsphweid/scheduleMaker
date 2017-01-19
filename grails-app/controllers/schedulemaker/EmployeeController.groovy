@@ -31,13 +31,6 @@ class EmployeeController {
             return
         }
 
-        if (employee.maxHours <= employee.minHours) {
-            transactionStatus.setRollbackOnly()
-            respond employee.errors, view:'create'
-            return
-        }
-
-
         if (employee.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond employee.errors, view:'create'
