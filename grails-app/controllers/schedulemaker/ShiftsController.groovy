@@ -10,19 +10,19 @@ class ShiftsController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Shifts.list(params), model:[shiftsCount: Shifts.count()]
+        respond Shift.list(params), model:[shiftsCount: Shift.count()]
     }
 
-    def show(Shifts shifts) {
+    def show(Shift shifts) {
         respond shifts
     }
 
     def create() {
-        [shiftsInstance: new Shifts(params)]
+        [shiftsInstance: new Shift(params)]
     }
 
     def save() {
-        def shiftsInstance = new Shifts(params)
+        def shiftsInstance = new Shift(params)
         shiftsInstance.lastUpdate = new Date()
         if (!shiftsInstance.save()) {
             render(view: "add", modal: [shiftsInstance: shiftsInstance])
@@ -32,12 +32,12 @@ class ShiftsController {
         redirect(action: "index")
     }
 
-    def edit(Shifts shifts) {
+    def edit(Shift shifts) {
         respond shifts
     }
 
     @Transactional
-    def update(Shifts shifts) {
+    def update(Shift shifts) {
 
         shifts.lastUpdate = new Date()
 
@@ -57,7 +57,7 @@ class ShiftsController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'shifts.label', default: 'Shifts'), shifts.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'shifts.label', default: 'Shift'), shifts.id])
                 redirect shifts
             }
             '*'{ respond shifts, [status: OK] }
@@ -65,7 +65,7 @@ class ShiftsController {
     }
 
     @Transactional
-    def delete(Shifts shifts) {
+    def delete(Shift shifts) {
 
         if (shifts == null) {
             transactionStatus.setRollbackOnly()
@@ -77,7 +77,7 @@ class ShiftsController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'shifts.label', default: 'Shifts'), shifts.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'shifts.label', default: 'Shift'), shifts.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -87,7 +87,7 @@ class ShiftsController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'shifts.label', default: 'Shifts'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'shifts.label', default: 'Shift'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

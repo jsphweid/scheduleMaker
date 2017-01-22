@@ -10,7 +10,7 @@ class WeekPredictionService {
 
     def getDayIdText() {
         def sql = new Sql(dataSource)
-        def dayPredictionRows = sql.rows("SELECT * FROM day_predictions")
+        def dayPredictionRows = sql.rows("SELECT * FROM day_prediction")
 
         // make simple map
         // use like: dayIdText.getAt(numberAtDay_ID)

@@ -1,13 +1,11 @@
 package schedulemaker
 
-class Shifts {
+class Shift {
 
     static mapping = {
-        table "shifts"
         version false
         id column: "shift_id"
         text column: "shift_text"
-        lastUpdate column: "last_update"
     }
 
     int id
